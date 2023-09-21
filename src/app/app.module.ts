@@ -3,14 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { GameHubComponent } from './game-hub/game-hub.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GameHubComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
