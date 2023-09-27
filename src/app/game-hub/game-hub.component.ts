@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneroServiceService } from '../service/genero-service.service';
+import { Observable } from 'rxjs';
+import { Genero } from '../models/genero.model';
 
 @Component({
   selector: 'app-game-hub',
@@ -7,22 +9,17 @@ import { GeneroServiceService } from '../service/genero-service.service';
   styleUrls: ['./game-hub.component.css']
 })
 export class GameHubComponent implements OnInit {
-  generos: any 
-  constructor(private myDataService: GeneroServiceService) { }
+
+  generos: Observable<Genero[]> = new Observable<Genero[]>()
+
+  constructor(private myDataService: GeneroServiceService) {
+    
+  }
+
 
   ngOnInit(): void {
-    this.getGeneros()
+    this.generos = this.myDataService.list();
   }
 
-  getGeneros() {
-    this.myDataService.getGenero().subscribe(
-      (response: any[]) => {
-        console.log(response)
-        this.generos = response
-      },
-      (error) => {
-        console.error('Erro: ', error)
-      }
-    )
-  }
+
 }
